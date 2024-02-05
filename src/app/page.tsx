@@ -1,4 +1,5 @@
 import Contact from '@/components/contact/contact'
+import Course from '@/components/course/course'
 import Feedback from '@/components/feedback/feedback'
 import Hero from '@/components/hero/hero'
 import Post from '@/components/posts/post'
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
     <Hero/>
+    <Course/>
 
     </>
   )
