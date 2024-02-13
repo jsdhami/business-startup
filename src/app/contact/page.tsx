@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 const contact = async () => {
   const session = await getServerSession(options)
   if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/contact')
+    redirect('/api/auth/signin?callbackUrl=/')
 }
   return (
     <>
