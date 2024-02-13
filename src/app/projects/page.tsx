@@ -1,50 +1,60 @@
 import { getServerSession } from "next-auth/next"
 import { options } from '../api/auth/[...nextauth]/options';
-const allProjects = fetch('http://localhost:3000/api/projects').then((res) => res.json())
+import Image from "next/image";
+import Link from "next/link";
+const allProjects = fetch('http://127.0.0.1:3000/api/projects').then((res) => res.json())
 const projects = async () => {
 const project = await allProjects;
 const session = await getServerSession(options)
-
 // console.log(project)
   return (
     <>
-
-
-    
-     {/* <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
-          {project.map((project:any) => (
-            <div key={project.id} className="group bg-red-300 rounded-md py-5 px-5 ">
-              <div className="aspect-h-1 aspect-w-1 w-full rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <img
-                  src={project.image}
-                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                />
-            
-              
-              </div>
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-700">
-                    <a href={project.link}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {project.title}
-                    </a>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">{project.description}</p>
-                </div>
-                <p className="text-sm font-medium text-gray-900">{project.id}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+ {/* {session?.user ? (
+    <div>
+      <h1>Hi {session.user.name}</h1>
+      <p>{session.user.email}</p>
+      <Image src={session.user.image ?? ""} alt="user" width={100} height={100} />
+      <p>Here are some projects you might be interested in</p>
     </div>
-  */}
-    </>
+  ) : ( 
+    <div>
+      <h1>Hi there</h1>
+      <p>Here are some projects you might be interested in</p>
+    </div>
+  ) 
+  }    */}
+<div className="px-5 py-5 grid grid-cols-4 gap-4">
+{project.map((project:any) => (
+  <div key={project.id} >
+  <article className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm">
+  <Image src={project.image} alt="project" width={500} height={500} className="h-56 w-full object-cover" />
+  <div className="p-4 sm:p-6">
+    <Link href={project.link}>
+      <h3 className="text-lg font-medium text-gray-900">
+        {project.title}
+      </h3>
+    </Link>
+
+    <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+      {project.description}
+    </p>
+
+    <Link href={project.link} className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
+      Find out more
+
+      <span aria-hidden="true" className="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+        &rarr;
+      </span>
+    </Link>
+  </div>
+
+</article>
+  </div>
+ ))}
+ 
+</div>
+
+   </>
   )
 }
 

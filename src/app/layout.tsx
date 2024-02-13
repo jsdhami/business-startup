@@ -6,6 +6,7 @@ import Navbar from '@/components/navbar/navbar'
 import Footer from '@/components/footer/footer'
 const inter = Inter({ subsets: ['latin'] })
 import { Theme } from '@radix-ui/themes';
+import Header from '@/components/header/header';
 
 export const metadata: Metadata = {
   title: 'JS DHAMI | Portfolio',
@@ -24,7 +25,8 @@ export default function RootLayout({
        
         <body className={inter.className}>
         <Theme> 
-        <Navbar/>
+        {/* <Navbar/> */}
+        <Header />
         {children}
         <Footer/>
         </Theme>

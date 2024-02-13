@@ -1,6 +1,9 @@
+import About from '@/components/about/about'
 import Contact from '@/components/contact/contact'
 import Course from '@/components/course/course'
 import Feedback from '@/components/feedback/feedback'
+import Fsection from '@/components/fsection/fsection'
+import Header from '@/components/header/header'
 import Hero from '@/components/hero/hero'
 import Post from '@/components/posts/post'
 import Service from '@/components/service/service'
@@ -12,8 +15,13 @@ export default function Home() {
 
   return (
     <>
-    <Hero/>
-    <Course/>
+    
+    <Fsection/>
+    {/* <Hero/> */}
+    {/* <Course/> */}
+    <About/>
+    <Service/>
+   <Testimonial/>
 
     </>
   )
