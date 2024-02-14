@@ -2,9 +2,22 @@ import { getServerSession } from "next-auth/next"
 import { options } from '../api/auth/[...nextauth]/options';
 import Image from "next/image";
 import Link from "next/link";
-const allProjects = fetch('http://127.0.0.1:3000/api/projects').then((res) => res.json())
+// const allProjects = fetch('http://localhost:3000/api/projects')
+// .then((res) => res.json())
+async function getData() {
+  const res = await fetch('http://127.0.0.1:3000/api/projects', { next: { revalidate: 3055 } })
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
+
 const projects = async () => {
-const project = await allProjects;
+// const response = await fetch('http://127.0.0.1:3000/api/projects');
+const project = await getData();
+
 const session = await getServerSession(options)
 // console.log(project)
   return (
@@ -46,6 +59,10 @@ const session = await getServerSession(options)
         &rarr;
       </span>
     </Link>
+
+
+    <button className=" bg-blue-gray-700 border-brown-500" >delete</button>
+
   </div>
 
 </article>

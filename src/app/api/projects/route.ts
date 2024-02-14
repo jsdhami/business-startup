@@ -82,11 +82,21 @@ export async function POST (request: NextRequest) {
     }
 
 export async function DELETE(request: NextRequest) {
-    // const payload = await request.json();
-    // const dataProject = await Project.findByIdAndDelete(payload.id);
-    const dataProject = await Project.findByIdAndDelete("65cb5d45081dc864ef52e098");
+     
+    //  const dataProject = await Project.findByIdAndDelete(params.id);
+    //   return NextResponse.json(dataProject);
+
+    const payload = await request.json();
+    const dataProject = await Project.findByIdAndDelete(payload.id);
+    // const dataProject = await Project.findByIdAndDelete("65cb5d45081dc864ef52e098");
     return NextResponse.json(dataProject);
   }
+
+// export async function DELETE(request: NextRequest) {
+//     const dataProject = await Project.findByIdAndDelete('gyvuhjiwodc6');
+//     return NextResponse.json(dataProject);
+//   }
+
 
 export async function PUT(request: NextRequest) {
     // const payload = await request.json();
