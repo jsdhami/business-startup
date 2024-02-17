@@ -5,7 +5,7 @@ import Link from "next/link";
 // const allProjects = fetch('http://localhost:3000/api/projects')
 // .then((res) => res.json())
 async function getData() {
-  const res = await fetch('http://127.0.0.1:3000/api/projects', { next: { revalidate: 3055 } })
+  const res = await fetch('http://127.0.0.1:3000/api/projects', { next: { revalidate: 3 } })
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

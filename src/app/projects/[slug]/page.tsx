@@ -9,7 +9,7 @@ async function project({ params }: { params: { slug: string } }) {
   console.log(project)
 
   return (
-    <div>project{project.description}</div>
+    <div>project</div>
   )
 }
 

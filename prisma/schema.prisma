@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type PostsAuthor {
+  href     String
+  imageUrl String
+  name     String
+  role     String
+}
+
+type PostsCategory {
+  href  String
+  title String
+}
+
+model formdatas {
+  id      String @id @default(uuid()) @map("_id") @db.ObjectId
+  v       Int?   @map("__v")
+  email   String
+  fname   String
+  lname   String
+  message String
+}
+
+model posts {
+  id          String        @id @default(uuid()) @map("_id") @db.ObjectId
+  v           Int           @map("__v")
+  author      PostsAuthor
+  category    PostsCategory
+  date        String
+  datetime    String
+  description String
+  href        String
+  title       String
+}
+
+model projects {
+  id          String @id @default(uuid()) @map("_id") @db.ObjectId
+  v           Int    @map("__v")
+  description String
+  image       String
+  link        String
+  title       String
+}
